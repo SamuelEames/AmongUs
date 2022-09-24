@@ -36,8 +36,13 @@ Keypad BtnMtx = Keypad( makeKeymap(hexaKeys), BTN_ROW_PINS, BTN_COL_PINS, BTN_RO
 #define SSEG_CS_PIN 19
 #define SSEG_NCHIP 2
 
-DigitLed72xx sSeg = DigitLed72xx(SSEG_CS_PIN, SSEG_NCHIP);
+DigitLed72xx sSeg = DigitLed72xx(SSEG_CS_PIN, SSEG_NCHIP);    // Initialise 7-segment displays
 
+
+///////////////////////////////////////////////////////////////////////////// Game Vars
+#define NUM_BTNS  BTN_COLS*BTN_ROWS          // Number of buttons used in task
+
+uint8_t sequence[10];           // Stores current sequence being used for task
 
 
 void setup() 
@@ -50,12 +55,24 @@ void setup()
     Serial.println(F("Wassup?"));
   #endif
 
-    sSeg.on(0);
-    sSeg.on(1);
-    sSeg.clear(0);
-    sSeg.clear(1);
-    sSeg.printDigit(12345678,0,0);
-    sSeg.printDigit(98,0,1);
+    // 7-Seg setup
+    sSeg.setBright(2, SSEG_NCHIP);
+
+
+    sSeg.on(SSEG_NCHIP);        // Turn on all displays
+    sSeg.clear(SSEG_NCHIP);     // Clear all displays
+    // sSeg.clear(1);
+    // sSeg.printDigit(12,0,0);
+    // sSeg.printDigit(2,0,2);
+
+    for (uint8_t i = 0; i < 10; ++i)
+    {
+      sSeg.clear(SSEG_NCHIP);     // Clear all displays
+      write7Seg(i,1);
+      delay(300);
+    }
+
+    generateSequence();
 
 }
 
@@ -66,5 +83,62 @@ void loop()
   if (customKey)
 
     Serial.println(customKey);
+}
 
+
+
+void write7Seg(uint8_t digit, uint8_t val)
+{
+  // Writes given value to given segment number
+
+  if (val > 9)          // Can only print a single number - return if given something else
+    return;
+
+  if (digit < 8)        // First 8 digits
+    sSeg.printDigit(val,0,digit);
+  else if (digit < 10)  // Last two digits
+    sSeg.printDigit(val,1,digit-8);
+  
+
+  return;
+}
+
+
+void generateSequence()
+{
+  // Generates a random button sequence for the task
+
+  bool numUsed = false;
+
+  randomSeed(millis());               // Seed random number generator (first time it will be the same, but after that it should be good)
+  sequence[0] = random(NUM_BTNS);     // Generate first random number in sequence
+
+  for (uint8_t i = 1; i < NUM_BTNS; ++i)
+  {
+    do
+    {
+      sequence[i] = random(NUM_BTNS);   // Generate random number
+      numUsed = false;
+
+      for (uint8_t j = 0; j < i; ++j)   // Check we haven't used that number yet
+      {
+        if (sequence[i] == sequence[j])
+          numUsed = true;
+      }
+    }
+    while (numUsed == true);            // Try again if we have already used that number
+  }
+
+
+  #ifdef DEBUG
+    DPRINT(F("Sequence = "));
+    for (uint8_t i = 0; i < NUM_BTNS; ++i)
+    {
+      DPRINT(F("\t"));
+      DPRINT(sequence[i]);
+    }
+    DPRINTLN();
+  #endif
+
+  return;
 }
