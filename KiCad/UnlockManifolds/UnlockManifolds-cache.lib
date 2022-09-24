@@ -1,0 +1,510 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Device_LED
+#
+DEF Device_LED D 0 40 N N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "Device_LED" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ LED*
+ LED_SMD:*
+ LED_THT:*
+$ENDFPLIST
+DRAW
+P 2 0 1 10 -50 -50 -50 50 N
+P 2 0 1 0 -50 0 50 0 N
+P 4 0 1 10 50 -50 50 50 -50 0 50 -50 N
+P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
+P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
+X K 1 -150 0 100 R 50 50 1 1 P
+X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Device_R
+#
+DEF Device_R R 0 0 N Y 1 F N
+F0 "R" 80 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
+F2 "" -70 0 50 V I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 N
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# PROMICRO_ProMicro
+#
+DEF PROMICRO_ProMicro U 0 40 Y Y 1 F N
+F0 "U" 0 950 60 H V C CNN
+F1 "PROMICRO_ProMicro" 0 -550 60 H V C CNN
+F2 "" 100 -1050 60 H V C CNN
+F3 "" 100 -1050 60 H V C CNN
+DRAW
+S -500 850 500 -450 0 1 0 N
+X TX 1 -700 750 200 R 50 50 1 1 B
+X E6 10 -700 -150 200 R 50 50 1 1 B
+X B4 11 -700 -250 200 R 50 50 1 1 B
+X B5 12 -700 -350 200 R 50 50 1 1 B
+X B6 13 700 -350 200 L 50 50 1 1 B
+X B2 14 700 -250 200 L 50 50 1 1 B
+X B3 15 700 -150 200 L 50 50 1 1 B
+X B1 16 700 -50 200 L 50 50 1 1 B
+X F7 17 700 50 200 L 50 50 1 1 B
+X F6 18 700 150 200 L 50 50 1 1 B
+X F5 19 700 250 200 L 50 50 1 1 B
+X RX 2 -700 650 200 R 50 50 1 1 B
+X F4 20 700 350 200 L 50 50 1 1 B
+X VCC 21 700 450 200 L 50 50 1 1 W
+X RST 22 700 550 200 L 50 50 1 1 I
+X GND 23 700 650 200 L 50 50 1 1 W
+X RAW 24 700 750 200 L 50 50 1 1 w
+X GND 3 -700 550 200 R 50 50 1 1 W
+X GND 4 -700 450 200 R 50 50 1 1 W
+X SDA 5 -700 350 200 R 50 50 1 1 B
+X SCL 6 -700 250 200 R 50 50 1 1 B
+X D4 7 -700 150 200 R 50 50 1 1 B
+X C6 8 -700 50 200 R 50 50 1 1 B
+X D7 9 -700 -50 200 R 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# RFM9X_RFM9X-S
+#
+DEF RFM9X_RFM9X-S U 0 30 Y Y 1 F N
+F0 "U" 0 -450 60 H V C CNN
+F1 "RFM9X_RFM9X-S" 0 550 60 H V C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+$FPLIST
+ RFM9X-TH
+ RFM9X-SMD
+$ENDFPLIST
+DRAW
+S -300 500 300 -400 0 1 0 f
+X GND 1 -400 400 100 R 50 50 1 1 W
+X GND 10 400 -200 100 L 50 50 1 1 W
+X DIO3 11 400 -100 100 L 50 50 1 1 B
+X DIO4 12 400 0 100 L 50 50 1 1 B
+X VDD 13 400 100 100 L 50 50 1 1 W
+X DIO0 14 400 200 100 L 50 50 1 1 B
+X DIO1 15 400 300 100 L 50 50 1 1 B
+X DIO2 16 400 400 100 L 50 50 1 1 B
+X MISO 2 -400 300 100 R 50 50 1 1 O
+X MOSI 3 -400 200 100 R 50 50 1 1 I
+X SCK 4 -400 100 100 R 50 50 1 1 I
+X NSS 5 -400 0 100 R 50 50 1 1 I
+X ~RESET 6 -400 -100 100 R 50 50 1 1 I
+X DIO5 7 -400 -200 100 R 50 50 1 1 B
+X GND 8 -400 -300 100 R 50 50 1 1 W
+X ANT 9 400 -300 100 L 50 50 1 1 O
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_10129379-904002BLF
+#
+DEF SamacSys_Parts_10129379-904002BLF J 0 30 Y Y 1 F N
+F0 "J" 650 300 50 H V L CNN
+F1 "SamacSys_Parts_10129379-904002BLF" 650 200 50 H V L CNN
+F2 "HDRRA4W67P0X254_1X4_1016X254X241P" 650 100 50 H I L CNN
+F3 "https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/10129379.pdf" 650 0 50 H I L CNN
+F4 "Headers & Wire Housings ECONOSTIK HEADER SR RA TH 1X4" 650 -100 50 H I L CNN "Description"
+F5 "2.41" 650 -200 50 H I L CNN "Height"
+F6 "649-1012937990402BLF" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Amphenol-FCI/10129379-904002BLF?qs=0lQeLiL1qybYsOE3kPCMFA%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Amphenol" 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "10129379-904002BLF" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 600 100 600 -400 200 -400 200 100 N
+X 1 1 0 0 200 R 50 50 0 0 P
+X 2 2 0 -100 200 R 50 50 0 0 P
+X 3 3 0 -200 200 R 50 50 0 0 P
+X 4 4 0 -300 200 R 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_68024-100HLF
+#
+DEF SamacSys_Parts_68024-100HLF J 0 30 Y Y 1 F N
+F0 "J" 650 300 50 H V L CNN
+F1 "SamacSys_Parts_68024-100HLF" 650 200 50 H V L CNN
+F2 "HDRV1W67P0X254_1X1_254X241X1082P" 650 100 50 H I L CNN
+F3 "https://www.mouser.in/datasheet/2/18/68000-1266375.pdf" 650 0 50 H I L CNN
+F4 "Headers & Wire Housings .100CC STR HEADER" 650 -100 50 H I L CNN "Description"
+F5 "10.82" 650 -200 50 H I L CNN "Height"
+F6 "649-68024-100HLF" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Amphenol-FCI/68024-100HLF?qs=DaoqcPPPDvU%252BhB9srASBgQ%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Amphenol" 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "68024-100HLF" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 600 100 600 -100 200 -100 200 100 N
+X 1 1 0 0 200 R 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_BC848B,215
+#
+DEF SamacSys_Parts_BC848B,215 Q 0 30 Y Y 1 F N
+F0 "Q" 550 50 50 H V L CNN
+F1 "SamacSys_Parts_BC848B,215" 550 -50 50 H V L CNN
+F2 "SOT95P230X110-3N" 550 -150 50 H I L CNN
+F3 "http://assets.nexperia.com/documents/data-sheet/BC848_SER.pdf" 550 -250 50 H I L CNN
+F4 "BC848 series - 30 V, 100 mA NPN general-purpose transistors" 550 -350 50 H I L CNN "Description"
+F5 "1.1" 550 -450 50 H I L CNN "Height"
+F6 "771-BC848B215" 550 -550 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Nexperia/BC848B215?qs=me8TqzrmIYWVIx0akKpYzQ%3D%3D" 550 -650 50 H I L CNN "Mouser Price/Stock"
+F8 "Nexperia" 550 -750 50 H I L CNN "Manufacturer_Name"
+F9 "BC848B,215" 550 -850 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+C 350 0 158 0 1 10 N
+P 2 0 1 6 100 0 300 0 N
+P 2 0 1 6 300 -50 400 -150 N
+P 2 0 1 6 300 50 400 150 N
+P 2 0 1 20 300 100 300 -100 N
+P 2 0 1 6 400 -150 400 -200 N
+P 2 0 1 6 400 150 400 200 N
+P 4 0 1 10 330 -100 350 -80 370 -120 330 -100 F
+X ~ 1 0 0 100 R 50 50 0 0 P
+X ~ 2 400 -300 100 U 50 50 0 0 P
+X ~ 3 400 300 100 D 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_C0805C104M5RACTU
+#
+DEF SamacSys_Parts_C0805C104M5RACTU C 0 30 Y Y 1 F N
+F0 "C" 350 250 50 H V L CNN
+F1 "SamacSys_Parts_C0805C104M5RACTU" 350 150 50 H V L CNN
+F2 "C0805" 350 50 50 H I L CNN
+F3 "https://content.kemet.com/datasheets/KEM_C1002_X7R_SMD.pdf" 350 -50 50 H I L CNN
+F4 "SMD Comm X7R, Ceramic, 0.1 uF, 20%, 50 VDC, 125 VDC, 125?C, -55?C, X7R, SMD, MLCC, Temperature Stable, Class II, 2.5 % , 10 GOhms, 11 mg, 0805, 2mm, 1.25mm, 0.78mm, 0.75mm, 0.5mm, 4000, 78  Weeks, 80" 350 -150 50 H I L CNN "Description"
+F5 "1.1" 350 -250 50 H I L CNN "Height"
+F6 "80-C0805C104M5R" 350 -350 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/KEMET/C0805C104M5RACTU?qs=VOOUd%252Bza08qHu13WgNByHQ%3D%3D" 350 -450 50 H I L CNN "Mouser Price/Stock"
+F8 "KEMET" 350 -550 50 H I L CNN "Manufacturer_Name"
+F9 "C0805C104M5RACTU" 350 -650 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 2 0 1 6 200 0 220 0 N
+P 2 0 1 6 220 100 220 -100 N
+P 2 0 1 6 280 0 300 0 N
+P 2 0 1 6 280 100 280 -100 N
+X ~ 1 0 0 200 R 50 50 0 0 P
+X ~ 2 500 0 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_C0805C471K5RACTU
+#
+DEF SamacSys_Parts_C0805C471K5RACTU C 0 30 Y Y 1 F N
+F0 "C" 350 250 50 H V L CNN
+F1 "SamacSys_Parts_C0805C471K5RACTU" 350 150 50 H V L CNN
+F2 "C0805" 350 50 50 H I L CNN
+F3 "https://content.kemet.com/datasheets/KEM_C1002_X7R_SMD.pdf" 350 -50 50 H I L CNN
+F4 "SMD Comm X7R, Ceramic, 470 pF, 10%, 50 VDC, 125 VDC, 125?C, -55?C, X7R, SMD, MLCC, Temperature Stable, Class II, 2.5 % , 100 GOhms, 11 mg, 0805, 2mm, 1.25mm, 0.78mm, 0.75mm, 0.5mm, 4000, 78  Weeks, 80" 350 -150 50 H I L CNN "Description"
+F5 "1.1" 350 -250 50 H I L CNN "Height"
+F6 "80-C0805C471K5R" 350 -350 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/KEMET/C0805C471K5RACTU?qs=zLJ08xwufm6Yml9V9rLpFw%3D%3D" 350 -450 50 H I L CNN "Mouser Price/Stock"
+F8 "KEMET" 350 -550 50 H I L CNN "Manufacturer_Name"
+F9 "C0805C471K5RACTU" 350 -650 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 2 0 1 6 200 0 220 0 N
+P 2 0 1 6 220 100 220 -100 N
+P 2 0 1 6 280 0 300 0 N
+P 2 0 1 6 280 100 280 -100 N
+X ~ 1 0 0 200 R 50 50 0 0 P
+X ~ 2 500 0 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_CL21B105KBFNNNG
+#
+DEF SamacSys_Parts_CL21B105KBFNNNG C 0 30 Y Y 1 F N
+F0 "C" 350 250 50 H V L CNN
+F1 "SamacSys_Parts_CL21B105KBFNNNG" 350 150 50 H V L CNN
+F2 "CAPC2012X135N" 350 50 50 H I L CNN
+F3 "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-DGA8/2478774.pdf" 350 -50 50 H I L CNN
+F4 "Cap Ceramic 1uF 50V X7R 10% Pad SMD 0805 125C T/R" 350 -150 50 H I L CNN "Description"
+F5 "1.35" 350 -250 50 H I L CNN "Height"
+F6 "187-CL21B105KBFNNNG" 350 -350 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Samsung-Electro-Mechanics/CL21B105KBFNNNG?qs=hqM3L16%252Bxlf%252BLSavaAk0sA%3D%3D" 350 -450 50 H I L CNN "Mouser Price/Stock"
+F8 "Samsung Electro-Mechanics" 350 -550 50 H I L CNN "Manufacturer_Name"
+F9 "CL21B105KBFNNNG" 350 -650 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 2 0 1 6 200 0 220 0 N
+P 2 0 1 6 220 100 220 -100 N
+P 2 0 1 6 280 0 300 0 N
+P 2 0 1 6 280 100 280 -100 N
+X ~ 1 0 0 200 R 50 50 0 0 P
+X ~ 2 500 0 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_CMI-1295-0585T
+#
+DEF SamacSys_Parts_CMI-1295-0585T LS 0 30 Y Y 1 F N
+F0 "LS" 650 300 50 H V L CNN
+F1 "SamacSys_Parts_CMI-1295-0585T" 650 200 50 H V L CNN
+F2 "CMI12950585T" 650 100 50 H I L CNN
+F3 "https://www.cuidevices.com/product/resource/pdf/cmi-1295-0585t.pdf" 650 0 50 H I L CNN
+F4 "Piezo Buzzers & Audio Indicators 12 mm, 5 Vdc, 85 dB, Through Hole, Driving Circuit, Magnetic Audio Indicator Buzzer" 650 -100 50 H I L CNN "Description"
+F5 "9.7" 650 -200 50 H I L CNN "Height"
+F6 "490-CMI-1295-0585T" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/CUI-Devices/CMI-1295-0585T?qs=P1JMDcb91o6b8IYPugSq6A%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "CUI Inc." 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "CMI-1295-0585T" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
+X + 1 0 0 200 R 50 50 0 0 P
+X - 2 0 -100 200 R 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_HDSP-511A
+#
+DEF SamacSys_Parts_HDSP-511A DS 0 30 Y Y 1 F N
+F0 "DS" 1550 300 50 H V L CNN
+F1 "SamacSys_Parts_HDSP-511A" 1550 200 50 H V L CNN
+F2 "HDSP511A" 1550 100 50 H I L CNN
+F3 "https://datasheet.datasheetarchive.com/originals/distributors/SFDatasheet-4/sf-00083626.pdf" 1550 0 50 H I L CNN
+F4 "Displays Segmented Module 1DIGIT 8LED Red CA 10-Pin DIP Tube" 1550 -100 50 H I L CNN "Description"
+F5 "8" 1550 -200 50 H I L CNN "Height"
+F6 "630-HDSP-511A" 1550 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Broadcom-Avago/HDSP-511A?qs=pQfy5%252BKCabKqE9kDJWu%2Fbw%3D%3D" 1550 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Avago Technologies" 1550 -500 50 H I L CNN "Manufacturer_Name"
+F9 "HDSP-511A" 1550 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 1500 100 1500 -500 200 -500 200 100 N
+X K_E 1 0 0 200 R 50 50 0 0 P
+X K_G 10 1700 0 200 L 50 50 0 0 P
+X K_D 2 0 -100 200 R 50 50 0 0 P
+X COMMON_A_1 3 0 -200 200 R 50 50 0 0 P
+X K_C 4 0 -300 200 R 50 50 0 0 P
+X K_DP 5 0 -400 200 R 50 50 0 0 P
+X K_B 6 1700 -400 200 L 50 50 0 0 P
+X K_A 7 1700 -300 200 L 50 50 0 0 P
+X COMMON_A_2 8 1700 -200 200 L 50 50 0 0 P
+X K_F 9 1700 -100 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_M20-9990246
+#
+DEF SamacSys_Parts_M20-9990246 J 0 30 Y Y 1 F N
+F0 "J" 650 300 50 H V L CNN
+F1 "SamacSys_Parts_M20-9990246" 650 200 50 H V L CNN
+F2 "HDRV2W66P0X254_1X2_508X254X874P" 650 100 50 H I L CNN
+F3 "https://cdn.harwin.com/pdfs/M20-999.pdf" 650 0 50 H I L CNN
+F4 "HARWIN  M20-9990246.  Board-To-Board Connector, Straight, 2.54 mm, 2 Contacts, Header, M20 Series, Through Hole" 650 -100 50 H I L CNN "Description"
+F5 "8.74" 650 -200 50 H I L CNN "Height"
+F6 "855-M20-9990246" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Harwin/M20-9990246?qs=Jph8NoUxIfWjw4WmyRvzag%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Harwin" 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "M20-9990246" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
+X 1 1 0 0 200 R 50 50 0 0 P
+X 2 2 0 -100 200 R 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_MAX7219EWG+
+#
+DEF SamacSys_Parts_MAX7219EWG+ IC 0 30 Y Y 1 F N
+F0 "IC" 1150 300 50 H V L CNN
+F1 "SamacSys_Parts_MAX7219EWG+" 1150 200 50 H V L CNN
+F2 "SOIC127P1032X265-24N" 1150 100 50 H I L CNN
+F3 "http://componentsearchengine.com/Datasheets/1/MAX7219EWG+.pdf" 1150 0 50 H I L CNN
+F4 "Serially Interfaced, 8-Digit LED Display Drivers" 1150 -100 50 H I L CNN "Description"
+F5 "2.65" 1150 -200 50 H I L CNN "Height"
+F6 "700-MAX7219EWG" 1150 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Maxim-Integrated/MAX7219EWG%2b?qs=1THa7WoU59E3cK8K%2FdYYpA%3D%3D" 1150 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Maxim Integrated" 1150 -500 50 H I L CNN "Manufacturer_Name"
+F9 "MAX7219EWG+" 1150 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 1100 100 1100 -1200 200 -1200 200 100 N
+X DIN 1 0 0 200 R 50 50 0 0 P
+X DIG_5 10 0 -900 200 R 50 50 0 0 P
+X DIG_1 11 0 -1000 200 R 50 50 0 0 P
+X LOAD 12 0 -1100 200 R 50 50 0 0 P
+X CLK 13 1300 -1100 200 L 50 50 0 0 P
+X SEG_A 14 1300 -1000 200 L 50 50 0 0 P
+X SEG_F 15 1300 -900 200 L 50 50 0 0 P
+X SEG_B 16 1300 -800 200 L 50 50 0 0 P
+X SEG_G 17 1300 -700 200 L 50 50 0 0 P
+X ISET 18 1300 -600 200 L 50 50 0 0 P
+X V+ 19 1300 -500 200 L 50 50 0 0 P
+X DIG_0 2 0 -100 200 R 50 50 0 0 P
+X SEG_C 20 1300 -400 200 L 50 50 0 0 P
+X SEG_E 21 1300 -300 200 L 50 50 0 0 P
+X SEG_DP 22 1300 -200 200 L 50 50 0 0 P
+X SEG_D 23 1300 -100 200 L 50 50 0 0 P
+X DOUT 24 1300 0 200 L 50 50 0 0 P
+X DIG_4 3 0 -200 200 R 50 50 0 0 P
+X GND_1 4 0 -300 200 R 50 50 0 0 P
+X DIG_6 5 0 -400 200 R 50 50 0 0 P
+X DIG_2 6 0 -500 200 R 50 50 0 0 P
+X DIG_3 7 0 -600 200 R 50 50 0 0 P
+X DIG_7 8 0 -700 200 R 50 50 0 0 P
+X GND_2 9 0 -800 200 R 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_TC1263-3.3VOATR
+#
+DEF SamacSys_Parts_TC1263-3.3VOATR IC 0 30 Y Y 1 F N
+F0 "IC" 1150 300 50 H V L CNN
+F1 "SamacSys_Parts_TC1263-3.3VOATR" 1150 200 50 H V L CNN
+F2 "SOIC127P600X175-8N" 1150 100 50 H I L CNN
+F3 "http://ww1.microchip.com/downloads/en/DeviceDoc/21374D.pdf" 1150 0 50 H I L CNN
+F4 "LDO Voltage Regulators 500mA Fixed Out Adj" 1150 -100 50 H I L CNN "Description"
+F5 "1.75" 1150 -200 50 H I L CNN "Height"
+F6 "579-TC1263-3.3VOATR" 1150 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Microchip-Technology/TC1263-33VOATR?qs=JKWmWPM4binFIJC0VNJYCQ%3D%3D" 1150 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Microchip" 1150 -500 50 H I L CNN "Manufacturer_Name"
+F9 "TC1263-3.3VOATR" 1150 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 1100 100 1100 -400 200 -400 200 100 N
+X VOUT 1 0 0 200 R 50 50 0 0 P
+X GND 2 0 -100 200 R 50 50 0 0 P
+X NC_1 3 0 -200 200 R 50 50 0 0 P
+X BYPASS 4 0 -300 200 R 50 50 0 0 P
+X ~ERROR 5 1300 -300 200 L 50 50 0 0 P
+X ~SHDN 6 1300 -200 200 L 50 50 0 0 P
+X NC_2 7 1300 -100 200 L 50 50 0 0 P
+X VIN 8 1300 0 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_TS02-66-60-BK-100-LCR-D
+#
+DEF SamacSys_Parts_TS02-66-60-BK-100-LCR-D IC 0 30 Y Y 1 F N
+F0 "IC" 1050 300 50 H V L CNN
+F1 "SamacSys_Parts_TS02-66-60-BK-100-LCR-D" 1050 200 50 H V L CNN
+F2 "TS026660BK100LCRD" 1050 100 50 H I L CNN
+F3 "https://www.cuidevices.com/product/resource/ts02.pdf" 1050 0 50 H I L CNN
+F4 "Tactile Switches 6 x 6 mm, 6 mm Act Height, 100 gf, Black, Long Crimped, Through Hole, SPST," 1050 -100 50 H I L CNN "Description"
+F5 "6.2" 1050 -200 50 H I L CNN "Height"
+F6 "179-TS026660BK100LCR" 1050 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/CUI-Devices/TS02-66-60-BK-100-LCR-D?qs=A6eO%252BMLsxmQEn9GN9b6zGQ%3D%3D" 1050 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "CUI Inc." 1050 -500 50 H I L CNN "Manufacturer_Name"
+F9 "TS02-66-60-BK-100-LCR-D" 1050 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 1000 100 1000 -200 200 -200 200 100 N
+X NO_1 1 0 0 200 R 50 50 0 0 P
+X NO_2 2 1200 0 200 L 50 50 0 0 P
+X COM_1 3 0 -100 200 R 50 50 0 0 P
+X COM_2 4 1200 -100 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_TXS0108EQPWRQ1
+#
+DEF SamacSys_Parts_TXS0108EQPWRQ1 IC 0 30 Y Y 1 F N
+F0 "IC" 950 300 50 H V L CNN
+F1 "SamacSys_Parts_TXS0108EQPWRQ1" 950 200 50 H V L CNN
+F2 "SOP65P640X120-20N" 950 100 50 H I L CNN
+F3 "http://www.ti.com/lit/gpn/txs0108e-q1" 950 0 50 H I L CNN
+F4 "8-Bit Bi-directional, Level-Shifting, Voltage Translator for Open-Drain and Push-Pull Applications" 950 -100 50 H I L CNN "Description"
+F5 "1.2" 950 -200 50 H I L CNN "Height"
+F6 "595-TXS0108EQPWRQ1" 950 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/TXS0108EQPWRQ1?qs=4BLsKd%2FIMYCjsiJW21Sqxg%3D%3D" 950 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Texas Instruments" 950 -500 50 H I L CNN "Manufacturer_Name"
+F9 "TXS0108EQPWRQ1" 950 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 900 100 900 -1000 200 -1000 200 100 N
+X A1 1 0 0 200 R 50 50 0 0 B
+X OE 10 0 -900 200 R 50 50 0 0 I
+X GND 11 1100 -900 200 L 50 50 0 0 W
+X B8 12 1100 -800 200 L 50 50 0 0 B
+X B7 13 1100 -700 200 L 50 50 0 0 B
+X B6 14 1100 -600 200 L 50 50 0 0 B
+X B5 15 1100 -500 200 L 50 50 0 0 B
+X B4 16 1100 -400 200 L 50 50 0 0 B
+X B3 17 1100 -300 200 L 50 50 0 0 B
+X B2 18 1100 -200 200 L 50 50 0 0 B
+X VCCB 19 1100 -100 200 L 50 50 0 0 W
+X VCCA 2 0 -100 200 R 50 50 0 0 W
+X B1 20 1100 0 200 L 50 50 0 0 B
+X A2 3 0 -200 200 R 50 50 0 0 B
+X A3 4 0 -300 200 R 50 50 0 0 B
+X A4 5 0 -400 200 R 50 50 0 0 B
+X A5 6 0 -500 200 R 50 50 0 0 B
+X A6 7 0 -600 200 R 50 50 0 0 B
+X A7 8 0 -700 200 R 50 50 0 0 B
+X A8 9 0 -800 200 R 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# SamacSys_Parts_WS2812B-B
+#
+DEF SamacSys_Parts_WS2812B-B LED 0 30 Y Y 1 F N
+F0 "LED" 950 300 50 H V L CNN
+F1 "SamacSys_Parts_WS2812B-B" 950 200 50 H V L CNN
+F2 "WS2812BB" 950 100 50 H I L CNN
+F3 "http://www.world-semi.com/DownLoadFile/111" 950 0 50 H I L CNN
+F4 "Light Emitting Diodes (LED) RGB 620~630nm Red, 515~530nm Green, 465~475nm Blue 550~700mcd@16mA Red, 1100~1400mcd@16mA Green, 200~400mcd@16mA Blue Top View 5050 RoHS" 950 -100 50 H I L CNN "Description"
+F5 "1.62" 950 -200 50 H I L CNN "Height"
+F6 "Worldsemi" 950 -300 50 H I L CNN "Manufacturer_Name"
+F7 "WS2812B-B" 950 -400 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 200 100 900 100 900 -200 200 -200 200 100 N
+X VDD 1 0 0 200 R 50 50 0 0 P
+X DOUT 2 0 -100 200 R 50 50 0 0 P
+X VSS 3 1100 -100 200 L 50 50 0 0 P
+X DIN 4 1100 0 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
+# power_+3V3
+#
+DEF power_+3V3 #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+3V3" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+ALIAS +3.3V
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +3V3 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_+5V
+#
+DEF power_+5V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+5V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +5V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_GND
+#
+DEF power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+#End Library
