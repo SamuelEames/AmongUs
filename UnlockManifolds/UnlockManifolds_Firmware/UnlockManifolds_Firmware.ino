@@ -19,10 +19,11 @@
 
 #include <Keypad.h>
 
-const uint8_t BTN_ROWS = 2; //four rows
-const uint8_t BTN_COLS = 5; //four columns
-//define the cymbols on the buttons of the keypads
-uint8_t hexaKeys[BTN_ROWS][BTN_COLS] = { {'0','1','2','3','4'}, {'5','6','7','8','9'} };
+#define BTN_ROWS 2
+#define BTN_COLS 5
+#define NUM_BTNS  BTN_COLS*BTN_ROWS          // Number of buttons used in task
+
+uint8_t hexaKeys[BTN_ROWS][BTN_COLS] = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10} };     // Map key numbers to button matrix -- Note: can't use '0' due to how function works
 
 const uint8_t BTN_ROW_PINS[BTN_ROWS] = {20, 21}; //connect to the row pinouts of the keypad
 const uint8_t BTN_COL_PINS[BTN_COLS] = {1, 4, 7, 8, 9}; //connect to the column pinouts of the keypad
@@ -39,8 +40,19 @@ Keypad BtnMtx = Keypad( makeKeymap(hexaKeys), BTN_ROW_PINS, BTN_COL_PINS, BTN_RO
 DigitLed72xx sSeg = DigitLed72xx(SSEG_CS_PIN, SSEG_NCHIP);    // Initialise 7-segment displays
 
 
+///////////////////////////////////////////////////////////////////////////// Pixel LEDs
+#include <FastLED.h>
+
+#define NUM_LEDS NUM_BTNS*2    
+#define DATA_PIN 6
+
+#define LED_BRIGHTNESS 100
+
+CRGB leds[NUM_LEDS];
+
+
 ///////////////////////////////////////////////////////////////////////////// Game Vars
-#define NUM_BTNS  BTN_COLS*BTN_ROWS          // Number of buttons used in task
+
 
 uint8_t sequence[10];           // Stores current sequence being used for task
 
@@ -55,52 +67,54 @@ void setup()
     Serial.println(F("Wassup?"));
   #endif
 
-    // 7-Seg setup
-    sSeg.setBright(2, SSEG_NCHIP);
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
+
+  // 7-Seg setup
+  sSeg.setBright(2, SSEG_NCHIP);
 
 
-    sSeg.on(SSEG_NCHIP);        // Turn on all displays
-    sSeg.clear(SSEG_NCHIP);     // Clear all displays
-    // sSeg.clear(1);
-    // sSeg.printDigit(12,0,0);
-    // sSeg.printDigit(2,0,2);
+  sSeg.on(SSEG_NCHIP);        // Turn on all displays
+  sSeg.clear(SSEG_NCHIP);     // Clear all displays
 
-    for (uint8_t i = 0; i < 10; ++i)
-    {
-      sSeg.clear(SSEG_NCHIP);     // Clear all displays
-      write7Seg(i,1);
-      delay(300);
-    }
+  generateSequence();
+  displaySequence();
 
-    generateSequence();
+  FastLED.setBrightness(LED_BRIGHTNESS);
+  fill_solid(leds, NUM_LEDS, 0x0000FF);
+  FastLED.show();
 
 }
 
 void loop() 
 {
-  uint8_t customKey = BtnMtx.getKey();
+  uint8_t btnPressed = BtnMtx.getKey();
   
-  if (customKey)
+  if (btnPressed)
+  {
+    Serial.println(btnPressed);
+    setBtnLed(btnPressed-1, 0xFF0000);
+  }
 
-    Serial.println(customKey);
 }
 
 
 
-void write7Seg(uint8_t digit, uint8_t val)
+bool write7Seg(uint8_t digit, uint8_t val)
 {
   // Writes given value to given segment number
+  // Returns 'true' if success, 'false' if bad parameters given and nothing written
 
   if (val > 9)          // Can only print a single number - return if given something else
-    return;
+    return false;
 
   if (digit < 8)        // First 8 digits
     sSeg.printDigit(val,0,digit);
   else if (digit < 10)  // Last two digits
     sSeg.printDigit(val,1,digit-8);
-  
+  else
+    return false;  
 
-  return;
+  return true;
 }
 
 
@@ -139,6 +153,48 @@ void generateSequence()
     }
     DPRINTLN();
   #endif
+
+  return;
+}
+
+
+void displaySequence()
+{
+  // prints sequence to displays
+
+  for (uint8_t i = 0; i < NUM_BTNS; ++i)
+    write7Seg(i, sequence[i]);
+
+  return;
+}
+
+
+void setBtnLed(uint8_t btnNum, uint32_t col)
+{
+  // Sets given button number LEDs to given colour
+
+  /* MAP
+
+  BTN   LED
+  0     19-20
+  1     17-18
+  2     15-16
+  3     13-14
+  4     11-12
+  5     0-1
+  6     2-3
+  7     4-5
+  8     6-7
+  9     8-9
+
+  */
+
+  if (btnNum < NUM_BTNS/2)
+    fill_solid(leds+NUM_LEDS - (btnNum+1) *2, 2, col);
+  else if (btnNum < NUM_BTNS)
+    fill_solid(leds + (btnNum - NUM_BTNS/2) *2, 2, col);
+
+  FastLED.show();
 
   return;
 }
