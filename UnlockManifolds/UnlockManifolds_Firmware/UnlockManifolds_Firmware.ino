@@ -46,7 +46,7 @@ DigitLed72xx sSeg = DigitLed72xx(SSEG_CS_PIN, SSEG_NCHIP);    // Initialise 7-se
 #define NUM_LEDS NUM_BTNS*2    
 #define DATA_PIN 6
 
-#define LED_BRIGHTNESS 100
+#define LED_BRIGHTNESS 10
 
 CRGB leds[NUM_LEDS];
 
@@ -55,6 +55,8 @@ CRGB leds[NUM_LEDS];
 
 
 uint8_t sequence[10];           // Stores current sequence being used for task
+
+uint8_t currentStep = 0;            // Holds current sequence step
 
 
 void setup() 
@@ -91,8 +93,22 @@ void loop()
   
   if (btnPressed)
   {
-    Serial.println(btnPressed);
-    setBtnLed(btnPressed-1, 0xFF0000);
+    btnPressed--;   // make buttons count up from 0
+
+    DPRINT("Current step = ");
+    DPRINT(currentStep);
+    DPRINT("\tSeqVal = ");
+    DPRINT(sequence[btnPressed]);
+    DPRINT("\tBtnPressed = ");
+    DPRINTLN(btnPressed);
+
+    if (sequence[btnPressed] == currentStep++)
+      setBtnLed(btnPressed, 0x00FF00);
+    else
+      setBtnLed(btnPressed, 0xFF0000);
+
+    if (currentStep >= NUM_BTNS)                // Wrap around
+      currentStep = 0;
   }
 
 }
