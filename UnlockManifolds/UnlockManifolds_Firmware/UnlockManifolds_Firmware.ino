@@ -51,12 +51,30 @@ DigitLed72xx sSeg = DigitLed72xx(SSEG_CS_PIN, SSEG_NCHIP);    // Initialise 7-se
 CRGB leds[NUM_LEDS];
 
 
+// Colours!
+#define COL_RED      0xFF0000
+#define COL_YELLOW   0xFF8F00
+#define COL_GREEN    0x00FF10
+#define COL_BLUE     0x0000FF
+#define COL_PINK     0xFF002F
+#define COL_CYAN     0x00AAAA
+#define COL_ORANGE   0xFF1C00
+
+#define COL_WHITE    0xFFFF7F
+#define COL_BLACK    0x000000
+
+
 ///////////////////////////////////////////////////////////////////////////// Game Vars
 
 
 uint8_t sequence[10];           // Stores current sequence being used for task
 
 uint8_t currentStep = 0;            // Holds current sequence step
+
+
+bool gameRunning = false;
+
+///////////////////////////////////////////////////////////////////////////// Functions
 
 
 void setup() 
@@ -74,24 +92,28 @@ void setup()
   // 7-Seg setup
   sSeg.setBright(2, SSEG_NCHIP);
 
-
   sSeg.on(SSEG_NCHIP);        // Turn on all displays
   sSeg.clear(SSEG_NCHIP);     // Clear all displays
 
-  // generateSequence();
-  // displaySequence();
-
-  // write7SegRAW(1, 0xFF);
-
-  // sSeg.write(2, 0xF, 0);
-  // sSeg.write(1, B01100011, 0);
-
 
   FastLED.setBrightness(LED_BRIGHTNESS);
-  fill_solid(leds, NUM_LEDS, 0x000000);
+  fill_solid(leds, NUM_LEDS, COL_BLACK);
   FastLED.show();
 
-  startGame();
+  // Sneaky animation to show we're ready
+  for (uint8_t i = 0; i < NUM_BTNS; ++i)
+  {
+    write7SegRAW(i, B00000001);
+    delay(20);
+  }
+
+  for (uint8_t i = 0; i < NUM_BTNS; ++i)
+  {
+    write7SegRAW(i, 0x00);
+    delay(20);
+  }
+
+  // startGame();
 }
 
 void loop() 
@@ -100,6 +122,14 @@ void loop()
   
   if (btnPressed)
   {
+
+    if (!gameRunning)
+    {
+      startGame();
+      return;
+    }
+
+
     btnPressed--;   // make buttons count up from 0
 
     DPRINT("Current step = ");
@@ -110,32 +140,36 @@ void loop()
     DPRINTLN(btnPressed);
 
     if (sequence[btnPressed] == currentStep++)  // Correct 
-      setBtnLed(btnPressed, 0x00FF00);
+      setBtnLed(btnPressed, COL_GREEN);
     else                                        // Incorrect
     {
-      for (uint8_t i = 0; i < 3; ++i)           // Flash button red 
+      for (uint8_t i = 0; i < NUM_BTNS; ++i)    // Light all pressed buttons red
       {
-        setBtnLed(btnPressed, 0xFF0000);
+        if (sequence[i] < (currentStep-1))
+          setBtnLed(i, COL_RED);
+      }
+
+      for (uint8_t i = 0; i < 3; ++i)           // Flash incorrect button red 
+      {
+        setBtnLed(btnPressed, COL_RED);
         delay(80);
-        setBtnLed(btnPressed, 0x0000FF);
+        setBtnLed(btnPressed, COL_BLUE);
         delay(80);
       }
       endGame();
-
     }
 
     if (currentStep >= NUM_BTNS)                // Winner!
     {
       for (int i = 0; i < 4; ++i)
       {
-        fill_solid(leds, NUM_LEDS, 0x0000FF);
+        fill_solid(leds, NUM_LEDS, COL_BLUE);
         FastLED.show();
         delay(100);
-        fill_solid(leds, NUM_LEDS, 0x00FF00);
+        fill_solid(leds, NUM_LEDS, COL_GREEN);
         FastLED.show();
         delay(100);
       }
-
       endGame();
     }
   }
@@ -146,9 +180,9 @@ void startGame()
 {
   // Animates game in
 
-  generateSequence();
+  gameRunning = true;
 
-  fill_solid(leds, NUM_LEDS, 0xFFFF00);
+  fill_solid(leds, NUM_LEDS, COL_YELLOW);
   FastLED.show();
 
   for (uint8_t i = 0; i < NUM_BTNS; ++i)
@@ -158,7 +192,7 @@ void startGame()
     delay(80);
   }
 
-  fill_solid(leds, NUM_LEDS, 0x0000FF);
+  fill_solid(leds, NUM_LEDS, COL_BLUE);
   FastLED.show();
   currentStep = 0;
 
@@ -170,13 +204,14 @@ void endGame()
 {
   // Animates game out
 
+  gameRunning = false;
+
   for (uint8_t i = 0; i < NUM_BTNS; ++i)
   {
-    setBtnLed(i, 0x000000);
+    setBtnLed(i, COL_BLACK);
     write7SegRAW(i, 0x00);
     delay(100);
   }
-
 
   return;
 }
