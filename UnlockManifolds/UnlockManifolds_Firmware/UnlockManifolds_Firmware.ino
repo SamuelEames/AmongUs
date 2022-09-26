@@ -78,13 +78,20 @@ void setup()
   sSeg.on(SSEG_NCHIP);        // Turn on all displays
   sSeg.clear(SSEG_NCHIP);     // Clear all displays
 
-  generateSequence();
-  displaySequence();
+  // generateSequence();
+  // displaySequence();
+
+  // write7SegRAW(1, 0xFF);
+
+  // sSeg.write(2, 0xF, 0);
+  // sSeg.write(1, B01100011, 0);
+
 
   FastLED.setBrightness(LED_BRIGHTNESS);
-  fill_solid(leds, NUM_LEDS, 0x0000FF);
+  fill_solid(leds, NUM_LEDS, 0x000000);
   FastLED.show();
 
+  startGame();
 }
 
 void loop() 
@@ -102,20 +109,81 @@ void loop()
     DPRINT("\tBtnPressed = ");
     DPRINTLN(btnPressed);
 
-    if (sequence[btnPressed] == currentStep++)
+    if (sequence[btnPressed] == currentStep++)  // Correct 
       setBtnLed(btnPressed, 0x00FF00);
-    else
-      setBtnLed(btnPressed, 0xFF0000);
+    else                                        // Incorrect
+    {
+      for (uint8_t i = 0; i < 3; ++i)           // Flash button red 
+      {
+        setBtnLed(btnPressed, 0xFF0000);
+        delay(80);
+        setBtnLed(btnPressed, 0x0000FF);
+        delay(80);
+      }
+      endGame();
 
-    if (currentStep >= NUM_BTNS)                // Wrap around
-      currentStep = 0;
+    }
+
+    if (currentStep >= NUM_BTNS)                // Winner!
+    {
+      for (int i = 0; i < 4; ++i)
+      {
+        fill_solid(leds, NUM_LEDS, 0x0000FF);
+        FastLED.show();
+        delay(100);
+        fill_solid(leds, NUM_LEDS, 0x00FF00);
+        FastLED.show();
+        delay(100);
+      }
+
+      endGame();
+    }
   }
 
 }
 
+void startGame()
+{
+  // Animates game in
+
+  generateSequence();
+
+  fill_solid(leds, NUM_LEDS, 0xFFFF00);
+  FastLED.show();
+
+  for (uint8_t i = 0; i < NUM_BTNS; ++i)
+  {
+    generateSequence();
+    displaySequence();
+    delay(80);
+  }
+
+  fill_solid(leds, NUM_LEDS, 0x0000FF);
+  FastLED.show();
+  currentStep = 0;
+
+  return;
+}
 
 
-bool write7Seg(uint8_t digit, uint8_t val)
+void endGame()
+{
+  // Animates game out
+
+  for (uint8_t i = 0; i < NUM_BTNS; ++i)
+  {
+    setBtnLed(i, 0x000000);
+    write7SegRAW(i, 0x00);
+    delay(100);
+  }
+
+
+  return;
+}
+
+
+
+bool write7SegNum(uint8_t digit, uint8_t val)
 {
   // Writes given value to given segment number
   // Returns 'true' if success, 'false' if bad parameters given and nothing written
@@ -125,10 +193,24 @@ bool write7Seg(uint8_t digit, uint8_t val)
 
   if (digit < 8)        // First 8 digits
     sSeg.printDigit(val,0,digit);
-  else if (digit < 10)  // Last two digits
+  else if (digit < NUM_BTNS)  // Last two digits
     sSeg.printDigit(val,1,digit-8);
   else
     return false;  
+
+  return true;
+}
+
+bool write7SegRAW(uint8_t digit, uint8_t val)
+{
+  //Writes given value to given 7-seg number
+
+  if (digit++ < 8)        // First 8 digits - Note: for some lame reason this function counts up from 1
+    sSeg.write(digit, val, 0);
+  else if (digit <= NUM_BTNS)  // Last two digits
+    sSeg.write(digit-8, val, 1);
+  else
+    return false; 
 
   return true;
 }
@@ -179,7 +261,7 @@ void displaySequence()
   // prints sequence to displays
 
   for (uint8_t i = 0; i < NUM_BTNS; ++i)
-    write7Seg(i, sequence[i]);
+    write7SegNum(i, sequence[i]);
 
   return;
 }
